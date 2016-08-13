@@ -19,7 +19,8 @@ fi
 : ${LOCAL_MOUNTDIR=/tmp/remote-mount}
 
 mkdir -p $LOCAL_MOUNTDIR
-umount $LOCAL_MOUNTDIR
+umount $LOCAL_MOUNTDIR || /bin/true
 mount -t nfs $NFS_SERVER:$REMOTE_SHARE $LOCAL_MOUNTDIR
 
-rsync -tr $LOCAL_MOUNTDIR/* $SYNC_DIR
+mkdir -p $SYNC_DIR
+rsync -tr $LOCAL_MOUNTDIR/* $SYNC_DIR/
