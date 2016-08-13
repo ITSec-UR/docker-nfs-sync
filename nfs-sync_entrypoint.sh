@@ -20,7 +20,7 @@ fi
 
 echo "Mounting remote directory $NFS_SERVER:$REMOTE_SHARE..."
 mkdir -p $LOCAL_MOUNTDIR
-umount $LOCAL_MOUNTDIR || /bin/true
+umount $LOCAL_MOUNTDIR 2> /dev/null || /bin/true
 mount -t nfs $NFS_SERVER:$REMOTE_SHARE $LOCAL_MOUNTDIR
 
 echo "Syncing files from $NFS_SERVER:$REMOTE_SHARE to $SYNC_DIR..."
